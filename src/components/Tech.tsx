@@ -1,9 +1,11 @@
 import { motion } from "framer-motion"
 import stack from '../data/techstack'
+import { useDarkMode } from "../contexts/DarkModeContext"
 
 const techStack = [...stack];
 
 export default function tech() {   
+    const { isDark } = useDarkMode();
     
     const itemVars = {
         hidden: { opacity: 0, y: 20},
@@ -39,13 +41,16 @@ export default function tech() {
 
                 <div className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center justify-between gap-4 opacity-[1] transform-none will-change-auto">
                     {techStack.map((stackItem, idx) => (
-                        <div key = {idx} className = "flex flex-1 gap-5 p-2.5 rounded-xl border border-[#fafafa] bg-neutral-800">
-                            <motion.div variants = {cardVars} className = "p-3 rounded-lg w-fit">
+                        <div key = {idx} className = {`flex flex-1 gap-5 p-2.5 rounded-xl border 
+                        ${isDark ? 'border-[#fafafa] bg-neutral-900' : 'border-neutral-800 bg-white/80'
+                        }`}>
+                            <motion.div variants = {cardVars} initial = "hidden" whileInView = "visible" className = "p-3 rounded-lg w-fit">
                                 <div className = "size-12">{stackItem.icon}</div>
                             </motion.div>
 
                             <div className = "flex flex-col justify-center">
-                                <h3 className = "font-semibold">{stackItem.title}</h3>
+                                <motion.h3 variants = {cardVars} initial = "hidden" whileInView = "visible" className = "font-md">{stackItem.title}</motion.h3>
+                                <motion.p variants = {cardVars} initial = "hidden" whileInView = "visible" className = {`font-light text-sm ${isDark ? 'text-neutral-400' : 'text-neutral-800'}`}>{stackItem.desc}</motion.p>
                             </div>
                         </div>
                     ))}
