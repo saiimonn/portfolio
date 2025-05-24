@@ -51,7 +51,7 @@ export default function Hero() {
     return (
         <motion.div className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-36 pb-20 text-center" variants = {containerVars} initial = "hidden" whileInView = "visible" viewport = {{once: true, amount: 0.3}}>
             <motion.p className="uppercase font-bold text-sm" variants = {itemVars}>Based in the Philippines</motion.p>
-            <motion.h1 className="text-4xl md:text-6xl font-bold mt-2" variants = {itemVars}>Professional Vibe Coder</motion.h1>
+            <motion.h1 className="text-4xl md:text-6xl font-bold mt-2" variants = {itemVars}>Freelance Web Developer</motion.h1>
             <motion.h2 className="mt-2 text-xl md:text-2xl font-medium" variants = {itemVars}>Sai Gementiza</motion.h2>
 
             <motion.p className="mt-4 text-md" variants = {itemVars}>
