@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 import {House, Hammer, User, Binary, Moon, Sun} from "lucide-react"
 import { useDarkMode } from "../contexts/DarkModeContext"
+import { motion } from "framer-motion"
 
 const navItems = [
     {label: "Home", href: "", icon: House},
@@ -24,15 +25,27 @@ export default function Navbar() {
         return() => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const containerVar = {
+        hidden: { opacity: 0, y: 10 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1,
+                ease: "easeIn"
+            }
+        }
+    }
+
     return(
         <>
             <div className="fixed top-0 left-0 w-full z-[5000]">
-                <div className="flex md:flex-row justify-between items-center px-4 md:px-8 py-4 md:space-y-0">         
+                <motion.div className="flex md:flex-row justify-between items-center px-4 md:px-8 py-4 md:space-y-0" variants = {containerVar} initial = "hidden" whileInView = "visible">         
                     <div className={`flex justify-center border border-[#8a8a8a] transition-colors backdrop-blur-sm rounded-lg px-6 py-3 space-x-4 font-light ${
-                        isDark 
-                            ? 'bg-[#2a2a2a] text-white'
-                            : 'bg-white text-black'
-                        }`}>
+                    isDark 
+                    ? 'bg-[#2a2a2a] text-white'
+                    : 'bg-[#eeeeee] text-black'
+                    }`}>
                         {isMobile ? (
                             <>
                                 {navItems.map(({icon: Icon, href}, idx) => (
@@ -67,7 +80,7 @@ export default function Navbar() {
                     }`}>
                         {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                     </button>
-                </div>
+                </motion.div>
             </div>
         </>
     );

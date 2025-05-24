@@ -9,18 +9,18 @@ function App() {
 
   return (
     <>
-      <main className={`w-full h-screen transition-colors duration-300 ${
+        <main className={`w-full h-screen transition-colors duration-300 ${
             isDark 
               ? 'bg-[#0a0a0a] text-white' 
               : 'bg-white text-black'
           }`}>
-        <div className="flex flex-col px-5 sm:px-10 relative">
-          <div className="max-w-7xl mx-auto w-full">
-            <Navbar/>
-            <Hero/>
+          <div className="flex flex-col px-5 sm:px-10 relative">
+            <div className="max-w-7xl mx-auto w-full">
+              <Navbar/>
+              <Hero/>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
     </>
   )
 }
