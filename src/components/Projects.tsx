@@ -86,7 +86,7 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
                         WebkitBackdropFilter: 'blur(20px)',
                     }}
                     >
-                        <motion.div className = {`max-w-3xl w-full h-full max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col ${
+                        <motion.div className = {`max-w-2xl w-full h-full max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col ${
                         isDark ? 'bg-neutral-900 shadow-black/50' : 'bg-white shadow-black/20'
                         }`}
                         layoutId = {`card-${id || title}`}

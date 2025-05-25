@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.tsx'
 import Hero from '../components/Hero.tsx'
 import Tech from '../components/Tech.tsx'
 import Projects from '../components/Projects.tsx'
+import About from '../components/About.tsx'
 import { useDarkMode } from '../contexts/DarkModeContext.tsx'
 
 function App() {
@@ -26,10 +27,7 @@ function App() {
                 <Projects/>
               </section>
               <section id="about">
-                <div className="py-16 sm:py-24">
-                  <h1 className="font-bold text-4xl md:text-6xl">About</h1>
-                  <p className="font-light text-lg md:text-xl mt-4">Coming soon...</p>
-                </div>
+                <About/>
               </section>
             </div>
           </div>
