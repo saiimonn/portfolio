@@ -155,7 +155,7 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
                                     </div>
                                 </motion.div>
 
-                                <motion.div className = "flex gap-4 sticky bottom-0 bg-inherit pt-4"
+                                <motion.div className = "flex gap-4 bottom-0 bg-inherit pt-4"
                                 initial = {{ opacity: 0, y: 20 }}
                                 animate = {{ opacity: 1, y: 0 }}
                                 transition = {{ delay: 0.3 }}
