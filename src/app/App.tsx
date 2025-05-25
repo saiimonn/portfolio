@@ -16,9 +16,21 @@ function App() {
           <div className="flex flex-col px-5 sm:px-10 relative">
             <div className="max-w-7xl mx-auto w-full">
               <Navbar/>
-              <Hero/>
-              <Tech/>
-              <Projects/>
+              <section id="home">
+                <Hero/>
+              </section>
+              <section id="tech">
+                <Tech/>
+              </section>
+              <section id="projects">
+                <Projects/>
+              </section>
+              <section id="about">
+                <div className="py-16 sm:py-24">
+                  <h1 className="font-bold text-4xl md:text-6xl">About</h1>
+                  <p className="font-light text-lg md:text-xl mt-4">Coming soon...</p>
+                </div>
+              </section>
             </div>
           </div>
         </main>

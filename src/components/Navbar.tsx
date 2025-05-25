@@ -4,10 +4,10 @@ import { useDarkMode } from "../contexts/DarkModeContext"
 import { motion } from "framer-motion"
 
 const navItems = [
-    {label: "Home", href: "", icon: House},
-    {label: "Tech", href: "", icon: Binary},
-    {label: "Projects", href: "", icon: Hammer},
-    {label: "About", href: "", icon: User},
+    {label: "Home", href: "#home", icon: House},
+    {label: "Tech", href: "#tech", icon: Binary},
+    {label: "Projects", href: "#projects", icon: Hammer},
+    {label: "About", href: "#about", icon: User},
 ]
 
 export default function Navbar() {
@@ -24,6 +24,24 @@ export default function Navbar() {
 
         return() => window.removeEventListener("resize", handleResize);
     }, []);
+
+    // Smooth scroll function
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            const navbarHeight = 100; // Account for fixed navbar height
+            const targetPosition = targetElement.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     const containerVar = {
         hidden: { opacity: 0, y: 10 },
@@ -46,22 +64,34 @@ export default function Navbar() {
         <>
             <div className="fixed top-0 left-0 w-full z-[5000]">
                 <motion.div className="flex md:flex-row justify-between items-center px-4 md:px-8 py-4 md:space-y-0" variants = {containerVar} initial = "hidden" whileInView = "visible">         
-                    <div className={`flex justify-center border border-[#8a8a8a] transition-colors backdrop-blur-sm rounded-lg px-6 py-3 space-x-4 font-light bg-transparent ${
+                    <div className={`flex justify-center border border-[#8a8a8a] transition-colors backdrop-blur-sm rounded-lg px-6 py-3 space-x-4 font-light ${
                     isDark ? 'bg-[#2a2a2a] text-white' : 'bg-[#eeeeee] text-black'
                     }`}>
                         {isMobile ? (
                             <>
                                 {navItems.map(({icon: Icon, href}, idx) => (
                                     <motion.a 
-                                    key={idx} 
-                                    href={href} 
-                                    className={`relative hover:text-neutral-400 transition-colors ${
-                                        isDark ? 'text-white' : 'text-black'
-                                    }`}
-                                    initial="initial"
-                                    whileHover="hover"
+                                        key={idx} 
+                                        href={href} 
+                                        onClick = {(e) => scrollToSection(e, href)}
+                                        className={`relative hover:text-neutral-400 transition-colors cursor-pointer ${
+                                            isDark ? 'text-white' : 'text-black'
+                                        }`}
+                                        initial="initial"
+                                        whileHover="hover"
                                     >
                                         <Icon/>
+                                        <motion.div
+                                            className={`absolute bottom-0 left-0 h-0.5 w-full ${
+                                                isDark ? 'bg-white' : 'bg-black'
+                                            }`}
+                                            variants={underlineVariants}
+                                            transition={{ 
+                                                duration: 0.3, 
+                                                ease: "easeOut",
+                                                originX: 0 
+                                            }}
+                                        />
                                     </motion.a>
                                 ))}
                             </>
@@ -69,25 +99,26 @@ export default function Navbar() {
                             <>
                                 {navItems.map(({label, href}, index) => (
                                     <motion.a 
-                                    key={index} 
-                                    href={href} 
-                                    className={`relative hover:text-neutral-400 transition-colors ${
-                                        isDark ? 'text-white' : 'text-black'
-                                    }`}
-                                    initial="initial"
-                                    whileHover="hover"
+                                        key={index} 
+                                        href={href} 
+                                        onClick={(e) => scrollToSection(e, href)}
+                                        className={`relative hover:text-neutral-400 transition-colors cursor-pointer ${
+                                            isDark ? 'text-white' : 'text-black'
+                                        }`}
+                                        initial="initial"
+                                        whileHover="hover"
                                     >
                                         <span>{label}</span>
                                         <motion.div
-                                        className={`absolute bottom-0 left-0 h-0.5 w-full ${
-                                            isDark ? 'bg-white' : 'bg-black'
-                                        }`}
-                                        variants={underlineVariants}
-                                        transition={{ 
-                                            duration: 0.3, 
-                                            ease: "easeOut",
-                                            originX: 0 
-                                        }}
+                                            className={`absolute bottom-0 left-0 h-0.5 w-full ${
+                                                isDark ? 'bg-white' : 'bg-black'
+                                            }`}
+                                            variants={underlineVariants}
+                                            transition={{ 
+                                                duration: 0.3, 
+                                                ease: "easeOut",
+                                                originX: 0 
+                                            }}
                                         />
                                     </motion.a>
                                 ))}
@@ -96,12 +127,14 @@ export default function Navbar() {
                     </div>
 
                     <motion.button 
-                    onClick={toggleDarkMode} 
-                    className={`flex justify-center border border-[#8a8a8a] cursor-pointer backdrop-blur-sm px-4 py-3 rounded-lg transition-colors bg-transparent ${
-                    isDark ? 'bg-[#1f1f1f] text-white hover:text-black hover:bg-gray-100' : 'bg-white/80 text-black hover:text-white hover:bg-black'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                        onClick={toggleDarkMode} 
+                        className={`flex justify-center border border-[#8a8a8a] cursor-pointer backdrop-blur-sm px-4 py-3 rounded-lg transition-colors ${
+                            isDark 
+                                ? 'bg-[#1f1f1f] text-white hover:text-black hover:bg-gray-100' 
+                                : 'bg-white/80 text-black hover:text-white hover:bg-black'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                     </motion.button>
@@ -109,4 +142,4 @@ export default function Navbar() {
             </div>
         </>
     );
-} 
+}
