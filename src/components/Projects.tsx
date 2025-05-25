@@ -2,6 +2,7 @@ import { useState } from "react"
 import { items } from "../data/projects"
 import { motion, AnimatePresence } from "framer-motion"
 import { useDarkMode } from "../contexts/DarkModeContext"
+import { ArrowLeft } from "lucide-react"
 
 interface CardProps {
     id?: string;
@@ -78,14 +79,14 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
             {/* Modal */}
             <AnimatePresence>
                 {isExpanded && (
-                    <motion.div className = "fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-50 p-4"
+                    <motion.div className = "fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-50 pt-24 pb-8 px-4"
                     initial = {{ opacity: 0 }} animate = {{ opacity: 1 }} exit = {{ opacity: 0 }} onClick = {() => setIsExpanded(false)}
                     style = {{
                         backdropFilter: 'blur(20px)',
                         WebkitBackdropFilter: 'blur(20px)',
                     }}
                     >
-                        <motion.div className = {`max-w-3xl w-full rounded-3xl overflow-hidden shadow-2xl ${
+                        <motion.div className = {`max-w-3xl w-full h-full max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col ${
                         isDark ? 'bg-neutral-900 shadow-black/50' : 'bg-white shadow-black/20'
                         }`}
                         layoutId = {`card-${id || title}`}
@@ -95,11 +96,36 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
                             WebkitBackdropFilter: 'blur(20px)',
                         }}
                         >
-                            <motion.div className = "aspect-video overflow-hidden" layoutId = {`image-${id || title}`}>
+                            {/* Back Button */}
+                            <motion.div 
+                                className="absolute top-4 left-4 z-10"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.2 }}
+                            >
+                                <button
+                                    onClick={() => setIsExpanded(false)}
+                                    className={`p-3 rounded-full backdrop-blur-md transition-colors ${
+                                        isDark 
+                                            ? 'bg-black/40 hover:bg-black/60 text-white' 
+                                            : 'bg-white/40 hover:bg-white/60 text-black'
+                                    }`}
+                                    style={{
+                                        backdropFilter: 'blur(10px)',
+                                        WebkitBackdropFilter: 'blur(10px)',
+                                    }}
+                                >
+                                    <ArrowLeft className="w-5 h-5" />
+                                </button>
+                            </motion.div>
+
+                            {/* Fixed Image Section */}
+                            <motion.div className = "aspect-video overflow-hidden flex-shrink-0" layoutId = {`image-${id || title}`}>
                                 <img src={image} alt={title} className = "w-full h-full object-cover"/>
                             </motion.div>
 
-                            <motion.div className = "p-8" layoutId = {`content-${id || title}`}>
+                            {/* Scrollable Content Section */}
+                            <motion.div className = "flex-1 overflow-y-auto p-8" layoutId = {`content-${id || title}`}>
                                 <motion.h3 className = "text-3xl font-bold mb-4" layoutId = {`title-${id || title}`}>{title}</motion.h3>
                                 <motion.p className = {`text-lg mb-6 leading-relaxed ${
                                 isDark ? 'text-neutral-300' : 'text-neutral-700'
@@ -129,7 +155,7 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
                                     </div>
                                 </motion.div>
 
-                                <motion.div className = "flex gap-4"
+                                <motion.div className = "flex gap-4 sticky bottom-0 bg-inherit pt-4"
                                 initial = {{ opacity: 0, y: 20 }}
                                 animate = {{ opacity: 1, y: 0 }}
                                 transition = {{ delay: 0.3 }}
@@ -164,7 +190,7 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
                                         </a>
                                     )}
 
-                                    {/* Fallback if no links available */}
+                                    {/* incase i didnt add links hehe */}
                                     {!site && !github && (
                                         <div className="flex-1 text-center py-3 text-neutral-500">
                                             Links coming soon...
@@ -183,8 +209,8 @@ function Card({ id, title, description, image, tech, github, site }: CardProps) 
 export default function Projects() {
     const itemVars = {
         hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
+        visible: { 
+            opacity: 1, 
             y: 0,
             transition: {
                 duration: 0.6,
