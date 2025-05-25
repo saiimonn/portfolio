@@ -46,8 +46,8 @@ export default function tech() {
 
                 <div className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center justify-between gap-4 opacity-[1] transform-none will-change-auto">
                     {techStack.map((stackItem, idx) => (
-                        <motion.div key = {idx} variants = {card} whileHover = "hover" className = {`flex flex-1 gap-5 p-2.5 rounded-xl border 
-                        ${isDark ? 'border-[#fafafa] bg-neutral-900' : 'border-neutral-800 bg-white/80'
+                        <motion.div key = {idx} variants = {card} whileHover = "hover" className = {`flex flex-1 gap-5 p-2.5 rounded-xl
+                        ${isDark ? ' bg-neutral-900' : ' bg-[#f3f3f3]'
                         }`}>
                             <motion.div variants = {cardVars} initial = "hidden" whileInView = "visible" className = "p-3 rounded-lg w-fit">
                                 <div className = "size-12">{stackItem.icon}</div>

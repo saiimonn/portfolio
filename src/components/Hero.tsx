@@ -83,7 +83,7 @@ export default function Hero() {
                     <motion.a
                     key={idx}
                     href={href}
-                    className={`p-2 border rounded-lg transition-colors ${
+                    className={`p-2 border border-[#2d2d2d] rounded-lg transition-colors ${
                         isDark ? 'hover:bg-white/80 hover:text-black' : 'hover:bg-black hover:text-white/80'
                     }`}
                     variants = {socialVars}
