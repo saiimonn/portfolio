@@ -2,6 +2,7 @@ import '../styles/index.css'
 import Navbar from '../components/Navbar.tsx'
 import Hero from '../components/Hero.tsx'
 import Tech from '../components/Tech.tsx'
+import Projects from '../components/Projects.tsx'
 import { useDarkMode } from '../contexts/DarkModeContext.tsx'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
               <Navbar/>
               <Hero/>
               <Tech/>
+              <Projects/>
             </div>
           </div>
         </main>
