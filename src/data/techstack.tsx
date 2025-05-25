@@ -22,7 +22,7 @@ const stack = [
     {
         title: "TailwindCSS",
         icon: <StackIcon name="tailwindcss" />,
-        desc: "Easier CSS"
+        desc: "CSS Framework"
     },
 
     {
@@ -34,13 +34,13 @@ const stack = [
     {
         title: "Typescript",
         icon: <StackIcon name="typescript" />,
-        desc: "React but better"
+        desc: "Superset of JavaScript"
     },
 
     {
         title: "Python",
         icon: <StackIcon name="python" />,
-        desc: "Data Analysis"
+        desc: "Scripting & Data Analysis"
     },
 
     {
