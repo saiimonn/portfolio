@@ -238,11 +238,6 @@ export default function Projects() {
                     variants = {itemVars} initial = "hidden" whileInView = "visible">
                         Projects
                     </motion.h1>
-
-                    <motion.p className = "font-light text-lg md:text-xl opacity-70"
-                    variants = {itemVars} initial = "hidden" whileInView = "visible">
-                        Some of my recent work
-                    </motion.p>
                 </div>
 
                 <motion.div className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"

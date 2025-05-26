@@ -49,14 +49,19 @@ export default function Hero() {
         }
     }
 
+    const imgVar = {
+        hidden: { scale: 0.9, opacity: 0 },
+        animate: { scale: 1, opacity: 1 }
+    }
+
     return (
-        <motion.div className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-36 pb-20 text-center" variants = {containerVars} initial = "hidden" whileInView = "visible" viewport = {{once: true, amount: 0.3}}>
+        <motion.div className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-36 pb-20 text-center" variants = {containerVars} initial = "hidden" whileInView = "visible" >
             <motion.p className="uppercase font-bold lg:text-lg md:text-md sm:text-md text-sm" variants = {itemVars}>Based in the Philippines</motion.p>
             <motion.h1 className="text-4xl md:text-6xl font-bold mt-2" variants = {itemVars}>Full-Stack Web Developer</motion.h1>
             <motion.h2 className="mt-2 text-xl md:text-2xl font-medium" variants = {itemVars}>Sai Gementiza</motion.h2>
             <motion.p className="mt-4 text-md" variants = {itemVars}>Second Year Computer Science Student <br /> with a focus in web development</motion.p>
 
-            <motion.div className="relative mt-6 w-44 h-44 flex items-center justify-center" initial = {{opacity: 0, scale: 0.8}} whileInView = {{opacity: 1, scale: 1}} viewport = {{once: true}} transition = {{duration: 0.8, delay: 0.6, type: "spring", bounce: 0.4}}>
+            <motion.div className="relative mt-6 w-44 h-44 flex items-center justify-center" initial = {{opacity: 0, scale: 0.8}} whileInView = {{opacity: 1, scale: 1}} transition = {{duration: 0.8, delay: 0.6, type: "spring", bounce: 0.4}}>
                 <motion.div
                 className="absolute inset-0 rounded-full"
                 animate={{ rotate: 360 }}
@@ -73,13 +78,14 @@ export default function Hero() {
                 className={`w-40 h-40 object-cover rounded-full relative z-10 border-4 ${
                     isDark ? 'border-black' : 'border-white'
                 }`}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                variants = {imgVar}
+                initial = "hidden"
+                whileInView = "animate"
                 />
             </motion.div>
 
 
-            <motion.div className="mt-6 flex gap-4" initial = {{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0}} viewport = {{once: true}} transition = {{duration: 0.6, delay: 0.8}}>
+            <motion.div className="mt-6 flex gap-4" initial = {{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0}} transition = {{duration: 0.6, delay: 0.8}}>
                 {socials.map(({ icon: Icon, href }, idx) => (
                     <motion.a
                     key={idx}
@@ -90,7 +96,6 @@ export default function Hero() {
                     variants = {socialVars}
                     initial = "hidden"
                     whileInView = "visible"
-                    viewport = {{once: true}}
                     transition = {{delay: 1 + idx * 0.1}}
                     whileHover = {{scale: 1.1, transition: {duration: 0.2}}}
                     whileTap = {{scale: 0.5}}

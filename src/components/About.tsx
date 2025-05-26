@@ -37,10 +37,6 @@ export default function About() {
         }
     }
 
-    const inputVars = {
-        hidden: {  }
-    }
-
     return(
         <>
             <div className = "mb-8">
