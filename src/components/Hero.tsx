@@ -1,5 +1,5 @@
 import me from '../assets/me-2.jpg'
-import { Github, Instagram, Linkedin, Facebook } from "lucide-react"
+import { Github, Instagram, Linkedin, Facebook, Contact } from "lucide-react"
 import { useDarkMode } from '../contexts/DarkModeContext'
 import { motion } from "framer-motion"
 
@@ -8,6 +8,7 @@ const socials = [
     { icon: Instagram, href: "https://www.instagram.com/_saiimonn/" },
     { icon: Linkedin, href: "" },
     { icon: Facebook, href: "https://www.facebook.com/simongabriel.gementiza" },
+    { icon: Contact, href: "mailto:gementizasgg08@gmail.com"},
 ]
 
 export default function Hero() {
