@@ -242,7 +242,7 @@ export default function Projects() {
 
                 <motion.div className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
                 variants = {containerVars} initial = "hidden" whileInView = "visible">
-                    {items.map((project, idx) => (
+                    {items.map((project) => (
                         <motion.div key = {project.id || project.title} variants = {itemVars}>
                             <Card {...project} />
                         </motion.div>
