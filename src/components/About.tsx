@@ -53,7 +53,7 @@ export default function About() {
                         <motion.p variants = {textVars} initial = "hidden" whileInView = "visible" className = "text-sm md:text-base lg:text-lg">
                             I am a 19-year-old college student at the University of San Carlos, currently pursuing a Bachelor's degree in Computer Science.
                             <br /> <br />
-                            I'm passionate about web development, with a strong inclination towards front-end technologies. I love crafting smooth user interfaces and bringing ideas to life through interactive, accessible, and modern designs.
+                            I'm passionate in web development, with a strong inclination towards the front-end. I love crafting smooth user interfaces and bringing ideas to life through interactive, accessible, and modern designs.
                         </motion.p>
 
                         <motion.h4 className = "lg:text-2xl md:text-xl sm:text-lg font-medium" variants = {textVars} initial = "hidden" whileInView = "visible">
